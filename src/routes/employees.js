@@ -5,7 +5,7 @@ const mysqlConnection  = require('../database.js');
 
 // GET all Employees
 router.get('/', (req, res) => {
-  mysqlConnection.query('SELECT * FROM employee', (err, rows, fields) => {
+  mysqlConnection.query('SELECT * FROM employees', (err, rows, fields) => {
     if(!err) {
       res.json(rows);
     } else {
@@ -17,7 +17,7 @@ router.get('/', (req, res) => {
 // GET An Employee
 router.get('/:id', (req, res) => {
   const { id } = req.params; 
-  mysqlConnection.query('SELECT * FROM employee WHERE id = ?', [id], (err, rows, fields) => {
+  mysqlConnection.query('SELECT * FROM employees WHERE id = ?', [id], (err, rows, fields) => {
     if (!err) {
       res.json(rows[0]);
     } else {
@@ -29,7 +29,7 @@ router.get('/:id', (req, res) => {
 // DELETE An Employee
 router.delete('/:id', (req, res) => {
   const { id } = req.params;
-  mysqlConnection.query('DELETE FROM employee WHERE id = ?', [id], (err, rows, fields) => {
+  mysqlConnection.query('DELETE FROM employees WHERE id = ?', [id], (err, rows, fields) => {
     if(!err) {
       res.json({status: 'Employee Deleted'});
     } else {
